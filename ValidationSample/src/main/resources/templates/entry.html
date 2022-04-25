@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- <title>入力画面</title> -->
+<!-- messages.propertiesから取得 -->
+<title th:text="#{title.entry}">タイトル</title>
+</head>
+<body>
+	<!-- /calcにPOSTリクエストを送る 
+	th:objectとth:field="*{}"でcalcFormクラスのフィールドと関連付け
+	${calcForm}を取得できるのはコントローラーで@ModelAttributeを付与してModelに格納しているため-->
+	
+	<form th:action="@{/calc}" method="post" th:object="${calcForm}">
+		<div>
+			<input type="text" th:field="*{leftNum}">
+			+
+			<input type="text" th:field="*{rightNum}">
+		</div>
+		<!-- <input type="submit" value="計算"> -->
+		<button type="submit" th:text="#{button.send}"></button>
+		<!-- エラー表示
+		エラー情報取得用メソッドを用いて判定やmessage取得を行う -->
+		<ul th:if="${#fields.hasErrors('*')}">
+			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			<!--<li th:each="err:${#fields.errors('leftNum')}" th:text="${err}"></li>
+			<li th:each="err:${#fields.errors('rightNum')}" th:text="${err}"></li>-->
+		</ul>
+		
+</body>
+</html>

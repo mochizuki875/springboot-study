@@ -1,0 +1,17 @@
+<!-- Fragment -->
+<!-- templates/commons/layoutに内容を埋め込む -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>ページA</title>
+</head>
+<body>
+	ここは見えない！！
+	<!-- 置き換わる内容 -->
+	<div layout:fragment="content">
+		<h1>PageA</h1>
+	</div>
+</body>
+</html>
